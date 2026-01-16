@@ -18,7 +18,7 @@ namespace DMS.Auth.DependencyInjection
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "DMS Auth API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "WORKMAN Auth API V1");
                 c.RoutePrefix = string.Empty;
             });
 
