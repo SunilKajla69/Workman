@@ -12,21 +12,21 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["DMS.Auth/DMS.Auth.csproj", "DMS.Auth/"]
-COPY ["BuildingBlock.Common/BuildingBlock.Common.csproj", "BuildingBlock.Common/"]
-COPY ["BuildingBlocks/BuildingBlocks.ExceptionHandling/BuildingBlocks.ExceptionHandling.csproj", "BuildingBlocks/BuildingBlocks.ExceptionHandling/"]
-RUN dotnet restore "./DMS.Auth/DMS.Auth.csproj"
+COPY ["src/WorkMan/WORKMAN.Auth/WORKMAN.Auth.csproj", "src/WorkMan/WORKMAN.Auth/"]
+COPY ["src/BuildingBlocks/BuildingBlock.Common/BuildingBlock.Common.csproj", "src/BuildingBlocks/BuildingBlock.Common/"]
+COPY ["src/BuildingBlocks/BuildingBlocks.ExceptionHandling/BuildingBlocks.ExceptionHandling.csproj", "src/BuildingBlocks/BuildingBlocks.ExceptionHandling/"]
+RUN dotnet restore "./src/WorkMan/WORKMAN.Auth/WORKMAN.Auth.csproj"
 COPY . .
-WORKDIR "/src/DMS.Auth"
-RUN dotnet build "./DMS.Auth.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/src/WorkMan/WORKMAN.Auth"
+RUN dotnet build "./WORKMAN.Auth.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./DMS.Auth.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./WORKMAN.Auth.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DMS.Auth.dll"]
+ENTRYPOINT ["dotnet", "WORKMAN.Auth.dll"]
