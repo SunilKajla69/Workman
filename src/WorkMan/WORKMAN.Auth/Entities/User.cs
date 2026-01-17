@@ -1,4 +1,4 @@
-﻿namespace DMS.Auth.Entities
+﻿namespace WORKMAN.Auth.Entities
 {
     public sealed class User
     {

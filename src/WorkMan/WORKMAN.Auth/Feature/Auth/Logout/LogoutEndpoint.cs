@@ -1,7 +1,7 @@
-﻿namespace DMS.Auth.Feature.Auth.Logout
+﻿namespace WORKMAN.Auth.Feature.Auth.Logout
 {
     [ApiController]
-    [Route("api/auth/logout")]
+    [Route("api/auth")]
     public sealed class LogoutEndpoint : ControllerBase
     {
         private readonly LogoutHandler _handler;
@@ -11,14 +11,17 @@
             _handler = handler;
         }
 
-        [HttpPost]
-        [ProducesResponseType(typeof(LogoutResponse), StatusCodes.Status200OK)]
-        public async Task<ActionResult<LogoutResponse>> LogoutAsync(
+        [HttpPost("logout")]
+        [ProducesResponseType(typeof(ApiResponse<LogoutResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<ApiResponse<LogoutResponse>>> LogoutAsync(
             [FromBody] LogoutRequest request,
             CancellationToken cancellationToken)
         {
             var response = await _handler.HandleAsync(request, cancellationToken);
-            return Ok(response);
+            return Ok(ApiResponse<LogoutResponse>.Ok(
+                response,
+                ResponseMessages.Auth.LogoutSuccess,
+                HttpContext.TraceIdentifier));
         }
     }
 }

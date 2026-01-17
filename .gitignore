@@ -19,3 +19,4 @@
 /src/WORKMAN.Auth/auth.db
 /src/BuildingBlock.Common/bin/Debug/net8.0
 /src/WORKMAN.Auth/logs
+/src/BuildingBlocks/BuildingBlocks.Common.Contracts/obj

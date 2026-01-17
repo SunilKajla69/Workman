@@ -1,4 +1,4 @@
-﻿namespace DMS.Auth.Infrastructure.Time
+﻿namespace WORKMAN.Auth.Infrastructure.Time
 {
     public class SystemClock
     {

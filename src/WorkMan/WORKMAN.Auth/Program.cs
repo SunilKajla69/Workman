@@ -1,4 +1,4 @@
-using DMS.Auth.DependencyInjection;
+using WORKMAN.Auth.DependencyInjection;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);

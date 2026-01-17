@@ -1,6 +1,6 @@
 ﻿using BuildingBlock.Common.EntityModels.JobCardEntity;
 
-namespace DMS.Auth.Infrastructure.Persistence
+namespace WORKMAN.Auth.Infrastructure.Persistence
 {
     public sealed class AuthDbContext : DbContext
     {

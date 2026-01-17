@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace DMS.Auth.Infrastructure.Security
+namespace WORKMAN.Auth.Infrastructure.Security
 {
     public sealed class PasswordHasher
     {

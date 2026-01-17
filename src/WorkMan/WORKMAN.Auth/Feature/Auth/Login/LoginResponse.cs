@@ -1,4 +1,4 @@
-﻿namespace DMS.Auth.Feature.Auth.Login
+﻿namespace WORKMAN.Auth.Feature.Auth.Login
 {
     public sealed record LoginResponse
     {

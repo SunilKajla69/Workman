@@ -1,4 +1,4 @@
-﻿namespace DMS.Auth.Infrastructure.Persistence.Configurations
+﻿namespace WORKMAN.Auth.Infrastructure.Persistence.Configurations
 {
     public sealed class UserConfiguration : IEntityTypeConfiguration<User>
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.HttpOverrides;
 
-namespace DMS.Auth.DependencyInjection
+namespace WORKMAN.Auth.DependencyInjection
 {
     public static class ApplicationBuilderExtensions
     {

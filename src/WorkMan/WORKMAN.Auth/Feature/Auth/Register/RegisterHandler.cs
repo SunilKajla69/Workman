@@ -1,4 +1,4 @@
-﻿namespace DMS.Auth.Feature.Auth.Register
+﻿namespace WORKMAN.Auth.Feature.Auth.Register
 {
     public sealed class RegisterHandler
     {

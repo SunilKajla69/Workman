@@ -4,7 +4,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DMS.Auth.Infrastructure.Security
+namespace WORKMAN.Auth.Infrastructure.Security
 {
     public sealed class JwtTokenService
     {

@@ -1,4 +1,4 @@
-﻿namespace DMS.Auth.Feature.RefreshToken
+﻿namespace WORKMAN.Auth.Feature.RefreshToken
 {
     public sealed class RefreshTokenHandler
     {

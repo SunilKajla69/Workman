@@ -1,12 +1,11 @@
-﻿using DMS.Auth.Feature.Auth.Logout;
+﻿using WORKMAN.Auth.Feature.Auth.Logout;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Threading.RateLimiting;
 
-namespace DMS.Auth.DependencyInjection
+namespace WORKMAN.Auth.DependencyInjection
 {
     public static class ServiceCollectionExtensions
     {

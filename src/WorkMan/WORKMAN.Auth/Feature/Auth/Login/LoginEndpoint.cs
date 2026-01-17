@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.RateLimiting;
-
-namespace DMS.Auth.Feature.Auth.Login
+﻿namespace WORKMAN.Auth.Feature.Auth.Login
 {
     [ApiController]
-    [Route("api/auth/login")]
+    [Route("api/auth")]
     public class LoginEndpoint : ControllerBase
     {
         private readonly LoginHandler _handler;
@@ -13,17 +11,19 @@ namespace DMS.Auth.Feature.Auth.Login
             _handler = handler;
         }
 
-        [HttpPost]
-        [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [HttpPost("login")]
+        [ProducesResponseType(typeof(ApiResponse<LoginResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status401Unauthorized)]
         [EnableRateLimiting("login-policy")]
-        public async Task<ActionResult<LoginResponse>> LoginAsync(
+        public async Task<ActionResult<ApiResponse<LoginResponse>>> LoginAsync(
             [FromBody] LoginRequest request,
             CancellationToken cancellationToken)
         {
-            // No try-catch needed - GlobalExceptionMiddleware handles UnauthorizedAccessException
             var response = await _handler.HandleAsync(request, cancellationToken);
-            return Ok(response);
+            return Ok(ApiResponse<LoginResponse>.Ok(
+                response,
+                ResponseMessages.Auth.LoginSuccess,
+                HttpContext.TraceIdentifier));
         }
     }
 }

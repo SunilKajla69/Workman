@@ -1,4 +1,4 @@
-﻿namespace DMS.Auth.Feature.Auth.Logout
+﻿namespace WORKMAN.Auth.Feature.Auth.Logout
 {
     public sealed class LogoutResponse
     {
