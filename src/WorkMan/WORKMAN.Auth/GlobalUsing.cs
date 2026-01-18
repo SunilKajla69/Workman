@@ -1,0 +1,14 @@
+﻿global using WORKMAN.Auth.Entities;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Microsoft.AspNetCore.Mvc;
+global using WORKMAN.Auth.Feature.Auth.Register;
+global using WORKMAN.Auth.Infrastructure.Security;
+global using WORKMAN.Auth.Infrastructure.Persistence;
+global using WORKMAN.Auth.Feature.Auth.Login;
+global using WORKMAN.Auth.Feature.RefreshToken;
+global using BuildingBlocks.ExceptionHandling;
+global using BuildingBlocks.Common.Contracts.Messages;
+global using BuildingBlocks.Common.Contracts.Responses;
+global using Microsoft.AspNetCore.RateLimiting;
+global using Microsoft.AspNetCore.Http;
