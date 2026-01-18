@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.ExceptionHandling", "src\BuildingBlocks\BuildingBlocks.ExceptionHandling\BuildingBlocks.ExceptionHandling.csproj", "{420CE610-7702-4907-AC47-B304A2BF68FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlock.Common", "src\BuildingBlocks\BuildingBlock.Common\BuildingBlock.Common.csproj", "{61C97C8B-D90A-4F85-BE6C-D5BA7C762708}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Common", "src\BuildingBlocks\BuildingBlock.Common\BuildingBlocks.Common.csproj", "{61C97C8B-D90A-4F85-BE6C-D5BA7C762708}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WORKMAN.Auth", "src\WorkMan\WORKMAN.Auth\WORKMAN.Auth.csproj", "{4177D23D-82E4-475A-8D39-5A37E0FC8F49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Common.Contracts", "src\BuildingBlocks\BuildingBlocks.Common.Contracts\BuildingBlocks.Common.Contracts.csproj", "{8BE8CF8A-8BCF-4486-B79E-3E1FEA430AEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WORKMAN.UserManagement", "src\WorkMan\WORKMAN.UserManagement\WORKMAN.UserManagement.csproj", "{C1E8908E-84F4-4E84-BC83-668FBD9EA573}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,18 @@ Global
 		{8BE8CF8A-8BCF-4486-B79E-3E1FEA430AEC}.Release|x64.Build.0 = Release|Any CPU
 		{8BE8CF8A-8BCF-4486-B79E-3E1FEA430AEC}.Release|x86.ActiveCfg = Release|Any CPU
 		{8BE8CF8A-8BCF-4486-B79E-3E1FEA430AEC}.Release|x86.Build.0 = Release|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Debug|x64.Build.0 = Debug|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Debug|x86.Build.0 = Debug|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Release|x64.ActiveCfg = Release|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Release|x64.Build.0 = Release|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Release|x86.ActiveCfg = Release|Any CPU
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +100,7 @@ Global
 		{8162EBAF-939B-7EBE-683B-D4FE58F67446} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{4177D23D-82E4-475A-8D39-5A37E0FC8F49} = {8162EBAF-939B-7EBE-683B-D4FE58F67446}
 		{8BE8CF8A-8BCF-4486-B79E-3E1FEA430AEC} = {7266C4A9-E384-DC00-0EB6-47F6002CFBA7}
+		{C1E8908E-84F4-4E84-BC83-668FBD9EA573} = {8162EBAF-939B-7EBE-683B-D4FE58F67446}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {03FB8F94-3FC7-4BF4-96B4-85929ABDA268}

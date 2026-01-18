@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Threading.RateLimiting;
+using BuildingBlocks.Common.DependencyInjection;
 
 namespace WORKMAN.Auth.DependencyInjection
 {
@@ -78,6 +79,9 @@ namespace WORKMAN.Auth.DependencyInjection
                 // Custom response when limited
                 options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
             });
+
+            //Add Event Infrastructure
+            services.AddEventInfrastructure();
 
             return services;
         }
