@@ -1,0 +1,9 @@
+﻿global using Microsoft.AspNetCore.Mvc;
+global using BuildingBlocks.Common.Contracts.Messages;
+global using BuildingBlocks.Common.Contracts.Responses;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.EntityFrameworkCore;
+global using WORKMAN.UserManagement.Entities;
+global using BuildingBlocks.Common.Guards;
+global using WORKMAN.UserManagement.Infrastructure;
+global using BuildingBlocks.Common.Contracts.Events;

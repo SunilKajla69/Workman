@@ -19,10 +19,10 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore
-        run: dotnet restore DMS.Auth.sln
+        run: dotnet restore src/WORKMAN.Auth.sln
 
       - name: Build
-        run: dotnet build DMS.Auth.sln --no-restore
+        run: dotnet build src/WORKMAN.Auth.sln --no-restore
 
       - name: Test
-        run: dotnet test DMS.Auth.sln --no-build --verbosity normal
+        run: dotnet test src/WORKMAN.Auth.sln --no-build --verbosity normal
