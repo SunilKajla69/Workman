@@ -13,7 +13,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/WorkMan/WORKMAN.Auth/WORKMAN.Auth.csproj", "src/WorkMan/WORKMAN.Auth/"]
-COPY ["src/BuildingBlocks/BuildingBlocks.Common/BuildingBlocks.Common.csproj", "src/BuildingBlocks/BuildingBlock.Common/"]
+COPY ["src/BuildingBlocks/BuildingBlock.Common/BuildingBlock.Common.csproj", "src/BuildingBlocks/BuildingBlock.Common/"]
 COPY ["src/BuildingBlocks/BuildingBlocks.Common.Contracts/BuildingBlocks.Common.Contracts.csproj", "src/BuildingBlocks/BuildingBlocks.Common.Contracts/"]
 COPY ["src/BuildingBlocks/BuildingBlocks.ExceptionHandling/BuildingBlocks.ExceptionHandling.csproj", "src/BuildingBlocks/BuildingBlocks.ExceptionHandling/"]
 RUN dotnet restore "./src/WorkMan/WORKMAN.Auth/WORKMAN.Auth.csproj"
