@@ -80,8 +80,8 @@ namespace WORKMAN.Auth.DependencyInjection
                 options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
             });
 
-            //Add Event Infrastructure
-            services.AddEventInfrastructure();
+            //Add Event Infrastructure (RabbitMQ)
+            services.AddRabbitMqEventPublisher();
 
             return services;
         }

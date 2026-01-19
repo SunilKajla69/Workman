@@ -1,0 +1,112 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: workman-rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - workman-network
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  postgres-auth:
+    image: postgres:16-alpine
+    container_name: workman-postgres-auth
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: workman_auth
+      POSTGRES_USER: workman_auth_user
+      POSTGRES_PASSWORD: workman_auth_pass123
+    volumes:
+      - postgres_auth_data:/var/lib/postgresql/data
+    networks:
+      - workman-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U workman_auth_user -d workman_auth"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  postgres-usermanagement:
+    image: postgres:16-alpine
+    container_name: workman-postgres-usermanagement
+    restart: unless-stopped
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: workman_usermanagement
+      POSTGRES_USER: workman_um_user
+      POSTGRES_PASSWORD: workman_um_pass123
+    volumes:
+      - postgres_usermanagement_data:/var/lib/postgresql/data
+    networks:
+      - workman-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U workman_um_user -d workman_usermanagement"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  workman.auth:
+    image: ${DOCKER_REGISTRY-}workmanauth
+    build:
+      context: .
+      dockerfile: src/WorkMan/WORKMAN.Auth/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      postgres-auth:
+        condition: service_healthy
+    networks:
+      - workman-network
+    environment:
+      - ConnectionStrings__AuthDatabase=Host=postgres-auth;Port=5432;Database=workman_auth;Username=workman_auth_user;Password=workman_auth_pass123
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+
+  workman.usermanagement:
+    image: ${DOCKER_REGISTRY-}workmanusermanagement
+    build:
+      context: .
+      dockerfile: src/WorkMan/WORKMAN.UserManagement/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      postgres-usermanagement:
+        condition: service_healthy
+    networks:
+      - workman-network
+    environment:
+      - ConnectionStrings__UserManagementDatabase=Host=postgres-usermanagement;Port=5432;Database=workman_usermanagement;Username=workman_um_user;Password=workman_um_pass123
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+
+networks:
+  workman-network:
+    driver: bridge
+
+volumes:
+  rabbitmq_data:
+  postgres_auth_data:
+  postgres_usermanagement_data:
+
+

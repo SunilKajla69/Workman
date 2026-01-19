@@ -13,9 +13,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/WorkMan/WORKMAN.UserManagement/WORKMAN.UserManagement.csproj", "src/WorkMan/WORKMAN.UserManagement/"]
-COPY ["src/BuildingBlocks/BuildingBlock.Common/BuildingBlocks.Common.csproj", "src/BuildingBlocks/BuildingBlock.Common/"]
-COPY ["src/BuildingBlocks/BuildingBlocks.Common.Contracts/BuildingBlocks.Common.Contracts.csproj", "src/BuildingBlocks/BuildingBlocks.Common.Contracts/"]
-COPY ["src/BuildingBlocks/BuildingBlocks.ExceptionHandling/BuildingBlocks.ExceptionHandling.csproj", "src/BuildingBlocks/BuildingBlocks.ExceptionHandling/"]
 RUN dotnet restore "./src/WorkMan/WORKMAN.UserManagement/WORKMAN.UserManagement.csproj"
 COPY . .
 WORKDIR "/src/src/WorkMan/WORKMAN.UserManagement"

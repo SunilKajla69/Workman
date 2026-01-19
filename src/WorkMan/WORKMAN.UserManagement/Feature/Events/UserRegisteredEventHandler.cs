@@ -1,4 +1,4 @@
-﻿namespace WORKMAN.UserManagement.Feature.Users
+﻿namespace WORKMAN.UserManagement.Feature.Events
 {
     public sealed class UserRegisteredEventHandler : IEventHandler<UserRegisteredEvent>
     {
