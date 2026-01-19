@@ -15,7 +15,7 @@ namespace WORKMAN.UserManagement.Entities
         // Constructor for EF Core
         private UserProfile() { }
 
-        public UserProfile(Guid id, string email, string firstName, string lastName)
+        public UserProfile(long id, string email, string firstName, string lastName)
         {
             Guard.AgainstNullOrWhiteSpace(email, nameof(email));
             Guard.AgainstNullOrWhiteSpace(firstName, nameof(firstName));

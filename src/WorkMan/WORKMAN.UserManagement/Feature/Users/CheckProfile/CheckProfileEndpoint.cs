@@ -18,7 +18,7 @@ namespace WORKMAN.UserManagement.Feature.Users.CheckProfile
         /// </summary>
         [HttpGet("profile-exists/{id}")]
         [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
-        public async Task<ActionResult> CheckProfileExists(Guid id, CancellationToken cancellationToken)
+        public async Task<ActionResult> CheckProfileExists(long id, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Checking if profile exists for UserId: {UserId}", id);
 

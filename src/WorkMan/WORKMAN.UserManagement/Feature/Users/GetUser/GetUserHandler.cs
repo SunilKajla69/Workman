@@ -9,7 +9,7 @@
             _db = db;
         }
 
-        public async Task<UserProfileDto?> HandleAsync(Guid userId, CancellationToken cancellationToken)
+        public async Task<UserProfileDto?> HandleAsync(long userId, CancellationToken cancellationToken)
         {
             Guard.AgainstNull(userId, nameof(userId));
 

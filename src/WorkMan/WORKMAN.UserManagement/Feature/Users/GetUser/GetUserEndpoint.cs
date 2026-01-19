@@ -19,7 +19,7 @@
         [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<ApiResponse<UserProfileDto>>> GetUserAsync(
-            Guid id,
+            long id,
             CancellationToken cancellationToken)
         {
             // Log authentication status
@@ -39,7 +39,7 @@
             
             _logger.LogInformation("UserId claim value: {UserIdClaim}", currentUserIdClaim ?? "NULL");
             
-            if (string.IsNullOrEmpty(currentUserIdClaim) || !Guid.TryParse(currentUserIdClaim, out var currentUserId))
+            if (string.IsNullOrEmpty(currentUserIdClaim) || !long.TryParse(currentUserIdClaim, out var currentUserId))
             {
                 _logger.LogWarning("Invalid or missing 'sub' claim in JWT");
                 return StatusCode(

@@ -15,5 +15,8 @@
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="docs\architecture\ID_STRATEGY.md" />
+    <None Include="docs\architecture\MIGRATION_GUIDE.md" />
+    <None Include="docs\architecture\QUICK_REFERENCE.md" />
   </ItemGroup>
 </Project>

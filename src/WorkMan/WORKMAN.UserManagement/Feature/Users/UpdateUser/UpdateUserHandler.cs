@@ -19,7 +19,7 @@ namespace WORKMAN.UserManagement.Feature.Users.UpdateUser
         }
 
         public async Task<UserProfileDto> HandleAsync(
-            Guid userId, 
+            long userId, 
             UpdateUserRequest request, 
             CancellationToken cancellationToken)
         {

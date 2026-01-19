@@ -29,7 +29,7 @@ namespace WORKMAN.UserManagement.Feature.Users.UpdateUser
         [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ApiResponse<UserProfileDto>>> UpdateUserAsync(
-            [FromRoute] Guid id,
+            [FromRoute] long id,
             [FromBody] UpdateUserRequest request,
             CancellationToken cancellationToken)
         {
@@ -37,7 +37,7 @@ namespace WORKMAN.UserManagement.Feature.Users.UpdateUser
             // Note: JWT "sub" claim is mapped to ClaimTypes.NameIdentifier by ASP.NET Core
             var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             
-            if (string.IsNullOrEmpty(currentUserId) || !Guid.TryParse(currentUserId, out var parsedUserId))
+            if (string.IsNullOrEmpty(currentUserId) || !long.TryParse(currentUserId, out var parsedUserId))
             {
                 _logger.LogWarning("Invalid or missing 'sub' claim in JWT");
                 return Forbid();

@@ -2,9 +2,9 @@
 {
     public sealed class RefreshToken
     {
-        public Guid Id { get; private set; } = Guid.NewGuid();
+        public long Id { get; private set; }
 
-        public Guid UserId { get; private set; }
+        public long UserId { get; private set; }
         public string Token { get; private set; } = default!;
 
         public DateTime ExpiresAtUtc { get; private set; }
@@ -15,7 +15,7 @@
 
         private RefreshToken() { }
 
-        public RefreshToken(Guid userId, string token, DateTime expiresAtUtc)
+        public RefreshToken(long userId, string token, DateTime expiresAtUtc)
         {
             UserId = userId;
             Token = token;

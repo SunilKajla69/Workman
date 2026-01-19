@@ -2,7 +2,7 @@
 {
     public sealed record UserProfileDto
     {
-        public Guid Id { get; init; }
+        public long Id { get; init; }
         public string Email { get; init; } = default!;
         public string FirstName { get; init; } = default!;
         public string LastName { get; init; } = default!;
