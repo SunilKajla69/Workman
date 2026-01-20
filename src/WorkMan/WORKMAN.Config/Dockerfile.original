@@ -13,8 +13,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/WorkMan/WORKMAN.Config/WORKMAN.Config.csproj", "src/WorkMan/WORKMAN.Config/"]
-COPY ["src/BuildingBlocks/BuildingBlock.Common/BuildingBlocks.Common.csproj", "src/BuildingBlocks/BuildingBlock.Common/"]
-COPY ["src/BuildingBlocks/BuildingBlocks.Common.Contracts/BuildingBlocks.Common.Contracts.csproj", "src/BuildingBlocks/BuildingBlocks.Common.Contracts/"]
 RUN dotnet restore "./src/WorkMan/WORKMAN.Config/WORKMAN.Config.csproj"
 COPY . .
 WORKDIR "/src/src/WorkMan/WORKMAN.Config"
