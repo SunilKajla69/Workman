@@ -24,7 +24,7 @@
             var email = request.Email.Trim().ToLowerInvariant();
 
             var user = await _authDb.Users
-                .SingleOrDefaultAsync(x =>x.Email == email, cancellationToken);
+                .SingleOrDefaultAsync(x =>x.Email == email && x.IsDeleted == 0, cancellationToken);
             if (user is null)
                 throw new UnauthorizedAccessException("Invalid credentials.");
 
@@ -38,7 +38,7 @@
             var refreshTokenValue = _jwtTokenService.GenerateRefreshToken();
 
             var refreshTokenDays =
-                int.Parse(_configuration["Jwt:RefreshTokenDays"]!);
+                _configuration.GetValue<int>("Jwt:RefreshTokenDays");
 
             var refreshToken = new Entities.RefreshToken(
                 user.Id,
@@ -53,7 +53,7 @@
                 AccessToken = accessToken,
                 RefreshToken = refreshTokenValue,
                 ExpiresInSeconds =
-                    int.Parse(_configuration["Jwt:AccessTokenMinutes"]!) * 60
+                    _configuration.GetValue<int>("Jwt:AccessTokenMinutes") * 60
             };
         }
     }

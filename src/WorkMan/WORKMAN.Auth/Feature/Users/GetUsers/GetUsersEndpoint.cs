@@ -1,5 +1,3 @@
-using WORKMAN.Auth.Feature.Users.GetUsers;
-
 namespace WORKMAN.Auth.Feature.Users.CheckProfile
 {
     [ApiController]
@@ -8,13 +6,11 @@ namespace WORKMAN.Auth.Feature.Users.CheckProfile
     public sealed class GetUsersEndpoint : ControllerBase
     {
         private readonly GetUsersHandler _handler;
-        private readonly AuthDbContext _db;
         private readonly ILogger<GetUsersEndpoint> _logger;
 
-        public GetUsersEndpoint(GetUsersHandler handler, AuthDbContext db, ILogger<GetUsersEndpoint> logger)
+        public GetUsersEndpoint(GetUsersHandler handler, ILogger<GetUsersEndpoint> logger)
         {
             _handler = handler;
-            _db = db;
             _logger = logger;
         }
 

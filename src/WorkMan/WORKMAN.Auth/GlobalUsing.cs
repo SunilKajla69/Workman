@@ -19,3 +19,6 @@ global using Microsoft.AspNetCore.RateLimiting;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Authorization;
 global using System.Security.Claims;
+global using WORKMAN.Auth.Feature.Users.DeleteUser;
+global using WORKMAN.Auth.Feature.Users.GetUsers;
+global using WORKMAN.Auth.Feature.Auth.Logout;

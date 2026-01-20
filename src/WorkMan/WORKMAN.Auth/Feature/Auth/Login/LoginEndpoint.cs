@@ -13,7 +13,7 @@
 
         [HttpPost("login")]
         [ProducesResponseType(typeof(ApiResponse<LoginResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status401Unauthorized)]
         [EnableRateLimiting("login-policy")]
         public async Task<ActionResult<ApiResponse<LoginResponse>>> LoginAsync(
             [FromBody] LoginRequest request,

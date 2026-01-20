@@ -1,12 +1,11 @@
-﻿using WORKMAN.Auth.Feature.Auth.Logout;
-using WORKMAN.Auth.Feature.Users.GetUsers;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Threading.RateLimiting;
 using BuildingBlocks.Common.DependencyInjection;
 using Microsoft.OpenApi.Models;
+
 
 namespace WORKMAN.Auth.DependencyInjection
 {
@@ -27,7 +26,6 @@ namespace WORKMAN.Auth.DependencyInjection
                     Description = "Authentication and User Management API"
                 });
 
-                // Define the Bearer security scheme
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below. Example: 'Bearer 12345abcdef'",
@@ -79,6 +77,7 @@ namespace WORKMAN.Auth.DependencyInjection
             services.AddScoped<GetUserHandler>();
             services.AddScoped<GetUsersHandler>();
             services.AddScoped<UpdateUserHandler>();
+            services.AddScoped<DeleteUserHandler>();
             services.AddScoped<SearchUserHandler>();
 
             // Security

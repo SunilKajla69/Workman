@@ -16,9 +16,9 @@
 
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(ApiResponse<UserProfileDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ApiResponse<UserProfileDto>>> UpdateUserAsync(
             [FromRoute] long id,
             [FromBody] UpdateUserRequest request,
@@ -39,7 +39,7 @@
                     parsedUserId, id);
                 return StatusCode(
                     StatusCodes.Status403Forbidden,
-                    ApiResponse<object>.Fail(
+                    ApiResponse.Fail(
                         ResponseMessages.UserManagement.OwnProfileOnly,
                         HttpContext.TraceIdentifier));
             }
@@ -56,28 +56,28 @@
             catch (InvalidOperationException ex) when (ex.Message.Contains("not found"))
             {
                 _logger.LogWarning(ex, "Profile not found for UserId: {UserId}", id);
-                return NotFound(ApiResponse<object>.Fail(
+                return NotFound(ApiResponse.Fail(
                     ResponseMessages.UserManagement.UserNotFound,
                     HttpContext.TraceIdentifier));
             }
             catch (InvalidOperationException ex) when (ex.Message.Contains("inactive"))
             {
                 _logger.LogWarning(ex, "Attempted to update inactive profile: {UserId}", id);
-                return BadRequest(ApiResponse<object>.Fail(
+                return BadRequest(ApiResponse.Fail(
                     ResponseMessages.UserManagement.CannotUpdateInactive,
                     HttpContext.TraceIdentifier));
             }
             catch (ArgumentException ex)
             {
                 _logger.LogWarning(ex, "Validation failed for UserId: {UserId}", id);
-                return BadRequest(ApiResponse<object>.Fail(
+                return BadRequest(ApiResponse.Fail(
                     ex.Message,
                     HttpContext.TraceIdentifier));
             }
             catch (InvalidOperationException ex)
             {
                 _logger.LogError(ex, "Business logic error updating UserId: {UserId}", id);
-                return BadRequest(ApiResponse<object>.Fail(
+                return BadRequest(ApiResponse.Fail(
                     ex.Message,
                     HttpContext.TraceIdentifier));
             }
@@ -86,7 +86,7 @@
                 _logger.LogError(ex, "Unexpected error updating UserId: {UserId}", id);
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
-                    ApiResponse<object>.Fail(
+                    ApiResponse.Fail(
                         ResponseMessages.General.UnexpectedError,
                         HttpContext.TraceIdentifier));
             }
