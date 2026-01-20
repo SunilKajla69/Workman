@@ -1,8 +1,10 @@
-﻿namespace BuildingBlocks.Common.Base
+﻿
+
+namespace BuildingBlocks.Common.ViewModels.BaseViewModels
 {
-    public abstract class BaseEntity
+    public class BaseVM
     {
-        public int Id { get; protected set; } 
+        public string Id { get; protected set; }
         public DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; protected set; }
         public int UpdatedBy { get; protected set; }
