@@ -8,21 +8,38 @@
 
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id);
-                // Column type will be inferred by provider (uuid for PostgreSQL, TEXT for SQLite)
+            builder.Property(x => x.Id)
+                .UseIdentityByDefaultColumn();
+                //.ValueGeneratedOnAdd(); 
 
             builder.Property(x => x.Email)
                 .IsRequired()
                 .HasMaxLength(256);
 
             builder.HasIndex(x => x.Email)
-                .IsUnique(); // 🔥 Critical for concurrency safety
+                .IsUnique(); 
 
             builder.Property(x => x.PasswordHash)
                 .IsRequired();
 
-            builder.Property(x => x.CreatedAtUtc)
+            // BaseEntity properties
+            builder.Property(x => x.CreatedAt)
                 .IsRequired();
+
+            builder.Property(x => x.UpdatedAt)
+                .IsRequired(false);
+
+            builder.Property(x => x.CreatedBy)
+                .HasDefaultValue(0);
+
+            builder.Property(x => x.UpdatedBy)
+                .HasDefaultValue(0);
+
+            builder.Property(x => x.IsDeleted)
+                .HasDefaultValue(0);
+
+            // Soft delete filter
+            builder.HasQueryFilter(x => x.IsDeleted == 0);
         }
     }
 }

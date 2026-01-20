@@ -19,9 +19,9 @@ namespace WORKMAN.UserManagement.Migrations
 
             modelBuilder.Entity("WORKMAN.UserManagement.Entities.UserProfile", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");

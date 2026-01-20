@@ -38,17 +38,28 @@
                 "Unhandled exception | TraceId: {TraceId}",
                 traceId);
 
-            var statusCode = exception switch
+            var (statusCode, message) = exception switch
             {
-                ApiException apiEx => apiEx.StatusCode,
-                UnauthorizedAccessException => StatusCodes.Status401Unauthorized,
-                InvalidOperationException => StatusCodes.Status409Conflict,
-                _ => StatusCodes.Status500InternalServerError
+                ApiException apiEx => (apiEx.StatusCode, apiEx.Message),
+                UnauthorizedAccessException => (
+                    StatusCodes.Status401Unauthorized, 
+                    "Unauthorized access. Please login to get a valid token."),
+                ArgumentException argEx => (
+                    StatusCodes.Status400BadRequest,
+                    _environment.IsDevelopment() ? argEx.Message : "Invalid request data."),
+                InvalidOperationException invOpEx when invOpEx.Message.Contains("not found") => (
+                    StatusCodes.Status404NotFound,
+                    _environment.IsDevelopment() ? invOpEx.Message : "Resource not found."),
+                InvalidOperationException invOpEx when invOpEx.Message.Contains("inactive") => (
+                    StatusCodes.Status400BadRequest,
+                    _environment.IsDevelopment() ? invOpEx.Message : "Operation not allowed."),
+                InvalidOperationException => (
+                    StatusCodes.Status409Conflict,
+                    _environment.IsDevelopment() ? exception.Message : "A conflict occurred."),
+                _ => (
+                    StatusCodes.Status500InternalServerError,
+                    _environment.IsDevelopment() ? exception.Message : "An unexpected error occurred.")
             };
-
-            var message = _environment.IsDevelopment()
-                ? exception.Message
-                : "An unexpected error occurred.";
 
             var response = new ApiErrorResponse
             {

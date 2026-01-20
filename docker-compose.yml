@@ -1,0 +1,49 @@
+services:
+  authdb:
+    image: postgres:15
+    container_name: workman-authdb
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: AuthDb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_auth_data:/var/lib/postgresql/data
+    networks:
+      - workman-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d AuthDb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: workman-rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - workman-network
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  workman-network:
+    driver: bridge
+
+volumes:
+  postgres_auth_data:
+  rabbitmq_data:

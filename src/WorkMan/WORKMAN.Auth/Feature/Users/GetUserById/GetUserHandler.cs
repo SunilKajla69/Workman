@@ -1,15 +1,15 @@
-﻿namespace WORKMAN.UserManagement.Feature.Users.GetUser
+﻿namespace WORKMAN.Auth.Feature.Users.GetUser
 {
     public sealed class GetUserHandler
     {
-        private readonly UserManagementDbContext _db;
+        private readonly AuthDbContext _db;
 
-        public GetUserHandler(UserManagementDbContext db)
+        public GetUserHandler(AuthDbContext db)
         {
             _db = db;
         }
 
-        public async Task<UserProfileDto?> HandleAsync(Guid userId, CancellationToken cancellationToken)
+        public async Task<UserProfileDto?> HandleAsync(long userId, CancellationToken cancellationToken)
         {
             Guard.AgainstNull(userId, nameof(userId));
 

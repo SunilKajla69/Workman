@@ -141,4 +141,4 @@ docker-compose.override.yml
 
 # Migration backups
 # **/Migrations/**/*.Designer.cs
-/docker-compose.yml
+/ARCHITECTURE_DECISIONS.md

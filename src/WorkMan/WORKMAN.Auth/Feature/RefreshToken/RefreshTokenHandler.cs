@@ -31,7 +31,7 @@
                 .SingleAsync(x => x.Id == existingToken.UserId, cancellationToken);
 
             // 🔥 ROTATION: revoke old token
-            existingToken.Revoke();
+            existingToken.Revoke((int)user.Id); // Track who revoked the token
 
             var newRefreshTokenValue = _jwtTokenService.GenerateRefreshToken();
 
