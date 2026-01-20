@@ -20,6 +20,27 @@ services:
       retries: 5
       start_period: 30s
 
+  configdb:
+    image: postgres:15
+    container_name: workman-configdb
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ConfigDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_config_data:/var/lib/postgresql/data
+    networks:
+      - workman-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ConfigDB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
   rabbitmq:
     image: rabbitmq:3-management
     container_name: workman-rabbitmq
