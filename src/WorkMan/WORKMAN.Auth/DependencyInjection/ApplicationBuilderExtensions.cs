@@ -10,8 +10,34 @@ namespace WORKMAN.Auth.DependencyInjection
             {
                 var dbContext = scope.ServiceProvider
                     .GetRequiredService<AuthDbContext>();
+                var logger = scope.ServiceProvider
+                    .GetRequiredService<ILogger<AuthDbContext>>();
 
-                dbContext.Database.Migrate();
+                // Retry logic for database migration with exponential backoff
+                var maxRetries = 5;
+                for (int retry = 1; retry <= maxRetries; retry++)
+                {
+                    try
+                    {
+                        logger.LogInformation("Attempting to migrate database (attempt {Retry} of {MaxRetries})...", retry, maxRetries);
+                        dbContext.Database.Migrate();
+                        logger.LogInformation("Database migration completed successfully.");
+                        break;
+                    }
+                    catch (Exception ex) when (retry < maxRetries)
+                    {
+                        var delay = TimeSpan.FromSeconds(Math.Pow(2, retry));
+                        logger.LogWarning(ex,
+                            "Failed to connect to database (attempt {Retry} of {MaxRetries}). Retrying in {Delay} seconds...",
+                            retry, maxRetries, delay.TotalSeconds);
+                        Thread.Sleep(delay);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.LogError(ex, "Failed to migrate database after {MaxRetries} attempts.", maxRetries);
+                        throw;
+                    }
+                }
             }
 
             app.UseSwagger();

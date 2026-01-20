@@ -12,7 +12,7 @@ using WORKMAN.Auth.Infrastructure.Persistence;
 namespace WORKMAN.Auth.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20260120064307_Remove SQLITE")]
+    [Migration("20260120111328_Remove SQLITE")]
     partial class RemoveSQLITE
     {
         /// <inheritdoc />
