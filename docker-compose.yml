@@ -40,6 +40,12 @@ services:
       timeout: 5s
       retries: 5
 
+  workman.config:
+    image: ${DOCKER_REGISTRY-}workmanconfig
+    build:
+      context: .
+      dockerfile: src/WorkMan/WORKMAN.Config/Dockerfile
+
 networks:
   workman-network:
     driver: bridge
@@ -47,3 +53,4 @@ networks:
 volumes:
   postgres_auth_data:
   rabbitmq_data:
+
