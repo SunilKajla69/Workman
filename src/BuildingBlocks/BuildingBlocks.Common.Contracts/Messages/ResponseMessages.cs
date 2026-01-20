@@ -40,11 +40,15 @@
 
         public static class UserManagement
         {
+            public const string OwnProfileOnly = "You can only update your own profile";
             public const string UserNotFound = "User not found";
             public const string UserCreated = "User created successfully";
             public const string UserUpdated = "User updated successfully";
             public const string UserDeleted = "User deleted successfully";
             public const string ProfileUpdated = "Profile updated successfully";
+            public const string CannotUpdateInactive = "Cannot update inactive user profile";
+            public const string UsersFetched = "Users retrieved successfully";
+
         }
     }
 }

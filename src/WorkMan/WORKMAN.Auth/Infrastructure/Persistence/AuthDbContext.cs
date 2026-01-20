@@ -1,12 +1,10 @@
-﻿using BuildingBlock.Common.EntityModels.JobCardEntity;
-
-namespace WORKMAN.Auth.Infrastructure.Persistence
+﻿namespace WORKMAN.Auth.Infrastructure.Persistence
 {
     public sealed class AuthDbContext : DbContext
     {
         public DbSet<User> Users => Set<User>();
+        public DbSet<UserProfile> UserProfiles => Set<UserProfile>();
         public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
-        public DbSet<JobCard> JobCards => Set<JobCard>();
 
         public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options)
         {

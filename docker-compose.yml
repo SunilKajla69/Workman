@@ -41,32 +41,13 @@ services:
       retries: 5
       start_period: 10s
 
-  postgres-usermanagement:
-    image: postgres:16-alpine
-    container_name: workman-postgres-usermanagement
-    restart: unless-stopped
-    ports:
-      - "5434:5432"
-    environment:
-      POSTGRES_DB: workman_usermanagement
-      POSTGRES_USER: workman_um_user
-      POSTGRES_PASSWORD: workman_um_pass123
-    volumes:
-      - postgres_usermanagement_data:/var/lib/postgresql/data
-    networks:
-      - workman-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U workman_um_user -d workman_usermanagement"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
-
   workman.auth:
     image: ${DOCKER_REGISTRY-}workmanauth
     build:
       context: .
       dockerfile: src/WorkMan/WORKMAN.Auth/Dockerfile
+    ports:
+        - "5001:8080"
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -81,25 +62,6 @@ services:
       - RabbitMQ__Username=guest
       - RabbitMQ__Password=guest
 
-  workman.usermanagement:
-    image: ${DOCKER_REGISTRY-}workmanusermanagement
-    build:
-      context: .
-      dockerfile: src/WorkMan/WORKMAN.UserManagement/Dockerfile
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
-      postgres-usermanagement:
-        condition: service_healthy
-    networks:
-      - workman-network
-    environment:
-      - ConnectionStrings__UserManagementDatabase=Host=postgres-usermanagement;Port=5432;Database=workman_usermanagement;Username=workman_um_user;Password=workman_um_pass123
-      - RabbitMQ__Host=rabbitmq
-      - RabbitMQ__Port=5672
-      - RabbitMQ__Username=guest
-      - RabbitMQ__Password=guest
-
 networks:
   workman-network:
     driver: bridge
@@ -107,6 +69,5 @@ networks:
 volumes:
   rabbitmq_data:
   postgres_auth_data:
-  postgres_usermanagement_data:
 
 

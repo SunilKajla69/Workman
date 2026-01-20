@@ -1,12 +1,10 @@
-﻿using WORKMAN.UserManagement.Feature.Users.GetUser;
-
-namespace WORKMAN.UserManagement.Feature.Users.SearchUsers
+﻿namespace WORKMAN.Auth.Feature.Users.SearchUsers
 {
     public sealed class SearchUserHandler
     {
-        private readonly UserManagementDbContext _db;
+        private readonly AuthDbContext _db;
 
-        public SearchUserHandler(UserManagementDbContext db)
+        public SearchUserHandler(AuthDbContext db)
         {
             _db = db;
         }

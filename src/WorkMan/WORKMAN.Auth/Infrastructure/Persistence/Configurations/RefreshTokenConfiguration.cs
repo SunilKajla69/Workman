@@ -23,6 +23,25 @@
             builder.Property(x => x.ExpiresAtUtc)
                 .IsRequired();
 
+            // BaseEntity properties
+            builder.Property(x => x.CreatedAt)
+                .IsRequired();
+
+            builder.Property(x => x.UpdatedAt)
+                .IsRequired(false);
+
+            builder.Property(x => x.CreatedBy)
+                .HasDefaultValue(0);
+
+            builder.Property(x => x.UpdatedBy)
+                .HasDefaultValue(0);
+
+            builder.Property(x => x.IsDeleted)
+                .HasDefaultValue(0);
+
+            // Soft delete filter
+            builder.HasQueryFilter(x => x.IsDeleted == 0);
+
             builder.HasOne<User>()
                 .WithMany()
                 .HasForeignKey(x => x.UserId)

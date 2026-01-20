@@ -1,9 +1,9 @@
-﻿namespace WORKMAN.Auth.Entities
-{
-    public sealed class RefreshToken
-    {
-        public long Id { get; private set; }
+﻿using BuildingBlocks.Common.Base;
 
+namespace WORKMAN.Auth.Entities
+{
+    public sealed class RefreshToken : BaseEntity
+    {
         public long UserId { get; private set; }
         public string Token { get; private set; } = default!;
 
@@ -22,9 +22,11 @@
             ExpiresAtUtc = expiresAtUtc;
         }
 
-        public void Revoke()
-        {
-            RevokedAtUtc = DateTime.UtcNow;
-        }
+    public void Revoke(int revokedBy)
+    {
+        RevokedAtUtc = DateTime.UtcNow;
+        UpdatedBy = revokedBy;
+        UpdatedAt = DateTime.UtcNow;
+    }
     }
 }

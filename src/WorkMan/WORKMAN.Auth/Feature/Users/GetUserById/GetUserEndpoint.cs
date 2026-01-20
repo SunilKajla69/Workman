@@ -1,4 +1,4 @@
-﻿namespace WORKMAN.UserManagement.Feature.Users.GetUser
+﻿namespace WORKMAN.Auth.Feature.Users.GetUser
 {
     [ApiController]
     [Route("api/users")]
@@ -22,19 +22,6 @@
             long id,
             CancellationToken cancellationToken)
         {
-            // Log authentication status
-            _logger.LogInformation("Request received for UserId: {UserId}", id);
-            _logger.LogInformation("User.Identity.IsAuthenticated: {IsAuthenticated}", User.Identity?.IsAuthenticated);
-            _logger.LogInformation("User.Identity.Name: {Name}", User.Identity?.Name);
-            _logger.LogInformation("Claims count: {ClaimsCount}", User.Claims.Count());
-            
-            foreach (var claim in User.Claims)
-            {
-                _logger.LogInformation("Claim: {Type} = {Value}", claim.Type, claim.Value);
-            }
-
-            // Authorization check: users can only get their own profile
-            // Note: JWT "sub" claim is mapped to ClaimTypes.NameIdentifier by ASP.NET Core
             var currentUserIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             
             _logger.LogInformation("UserId claim value: {UserIdClaim}", currentUserIdClaim ?? "NULL");

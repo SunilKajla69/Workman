@@ -1,6 +1,4 @@
-﻿using WORKMAN.UserManagement.Feature.Users.GetUser;
-
-namespace WORKMAN.UserManagement.Feature.Users.SearchUsers
+﻿namespace WORKMAN.Auth.Feature.Users.SearchUsers
 {
     [ApiController]
     [Route("api/users")]

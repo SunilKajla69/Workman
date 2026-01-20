@@ -6,7 +6,6 @@ namespace WORKMAN.Auth.DependencyInjection
     {
         public static WebApplication UseAuthApi(this WebApplication app)
         {
-            // Apply migrations
             using (var scope = app.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider
@@ -18,7 +17,7 @@ namespace WORKMAN.Auth.DependencyInjection
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "WORKMAN Auth API V1");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "WORKMAN Auth API V2");
                 c.RoutePrefix = string.Empty;
             });
 

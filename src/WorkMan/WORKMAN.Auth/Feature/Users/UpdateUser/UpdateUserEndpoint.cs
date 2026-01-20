@@ -1,6 +1,4 @@
-﻿using WORKMAN.UserManagement.Feature.Users.GetUser;
-
-namespace WORKMAN.UserManagement.Feature.Users.UpdateUser
+﻿namespace WORKMAN.Auth.Feature.Users.UpdateUser
 {
     [ApiController]
     [Route("api/users")]
@@ -16,13 +14,6 @@ namespace WORKMAN.UserManagement.Feature.Users.UpdateUser
             _logger = logger;
         }
 
-        /// <summary>
-        /// Updates user profile information (FirstName, LastName, PhoneNumber)
-        /// </summary>
-        /// <param name="id">User ID from route</param>
-        /// <param name="request">Profile update data</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Updated user profile</returns>
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(ApiResponse<UserProfileDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status403Forbidden)]
@@ -33,8 +24,6 @@ namespace WORKMAN.UserManagement.Feature.Users.UpdateUser
             [FromBody] UpdateUserRequest request,
             CancellationToken cancellationToken)
         {
-            // Authorization: Users can only update their own profile
-            // Note: JWT "sub" claim is mapped to ClaimTypes.NameIdentifier by ASP.NET Core
             var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             
             if (string.IsNullOrEmpty(currentUserId) || !long.TryParse(currentUserId, out var parsedUserId))
@@ -51,7 +40,7 @@ namespace WORKMAN.UserManagement.Feature.Users.UpdateUser
                 return StatusCode(
                     StatusCodes.Status403Forbidden,
                     ApiResponse<object>.Fail(
-                        "You can only update your own profile",
+                        ResponseMessages.UserManagement.OwnProfileOnly,
                         HttpContext.TraceIdentifier));
             }
 
@@ -75,12 +64,11 @@ namespace WORKMAN.UserManagement.Feature.Users.UpdateUser
             {
                 _logger.LogWarning(ex, "Attempted to update inactive profile: {UserId}", id);
                 return BadRequest(ApiResponse<object>.Fail(
-                    "Cannot update inactive user profile",
+                    ResponseMessages.UserManagement.CannotUpdateInactive,
                     HttpContext.TraceIdentifier));
             }
             catch (ArgumentException ex)
             {
-                // Validation errors from Guard or domain logic
                 _logger.LogWarning(ex, "Validation failed for UserId: {UserId}", id);
                 return BadRequest(ApiResponse<object>.Fail(
                     ex.Message,
@@ -88,7 +76,6 @@ namespace WORKMAN.UserManagement.Feature.Users.UpdateUser
             }
             catch (InvalidOperationException ex)
             {
-                // General business logic errors
                 _logger.LogError(ex, "Business logic error updating UserId: {UserId}", id);
                 return BadRequest(ApiResponse<object>.Fail(
                     ex.Message,
@@ -96,7 +83,6 @@ namespace WORKMAN.UserManagement.Feature.Users.UpdateUser
             }
             catch (Exception ex)
             {
-                // Unexpected errors
                 _logger.LogError(ex, "Unexpected error updating UserId: {UserId}", id);
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,

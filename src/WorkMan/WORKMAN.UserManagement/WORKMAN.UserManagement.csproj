@@ -32,4 +32,8 @@
     <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.ExceptionHandling\BuildingBlocks.ExceptionHandling.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\" />
+  </ItemGroup>
+
 </Project>
