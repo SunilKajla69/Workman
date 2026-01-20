@@ -2,7 +2,7 @@
 {
     public sealed record RegisterResponse
     {
-        public Guid UserId { get; init; }
+        public long UserId { get; init; }
         public string Email { get; init; } = default!;
     }
 }

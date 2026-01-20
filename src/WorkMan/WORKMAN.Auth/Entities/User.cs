@@ -1,13 +1,11 @@
-﻿namespace WORKMAN.Auth.Entities
-{
-    public sealed class User
-    {
-        public Guid Id { get; private set; } = Guid.NewGuid();
+﻿using BuildingBlocks.Common.Base;
 
+namespace WORKMAN.Auth.Entities
+{
+    public sealed class User : BaseEntity
+    {
         public string Email { get; private set; } = default!;
         public string PasswordHash { get; private set; } = default!;
-
-        public DateTime CreatedAtUtc { get; private set; } = DateTime.UtcNow;
 
         private User() { }
 
@@ -16,5 +14,19 @@
             Email = email;
             PasswordHash = passwordHash;
         }
+
+    public void UpdatePassword(string newPasswordHash, int updatedBy)
+    {
+        PasswordHash = newPasswordHash;
+        UpdatedBy = updatedBy;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void MarkAsDeleted(int deletedBy)
+    {
+        UpdatedBy = deletedBy;
+        UpdatedAt = DateTime.UtcNow;
+        IsDeleted = 1;
+    }
     }
 }

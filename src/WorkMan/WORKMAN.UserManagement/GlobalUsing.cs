@@ -7,3 +7,4 @@ global using WORKMAN.UserManagement.Entities;
 global using BuildingBlocks.Common.Guards;
 global using WORKMAN.UserManagement.Infrastructure;
 global using BuildingBlocks.Common.Contracts.Events;
+global using System.Security.Claims;

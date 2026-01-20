@@ -31,9 +31,17 @@ namespace WORKMAN.Auth.Feature.Auth.Register
             }
             catch (DbUpdateException)
             {
-                // UNIQUE constraint violation (email already exists)
                 throw new InvalidOperationException("Email already registered.");
             }
+
+            // Create minimal profile - user can complete it later via Update Profile endpoint
+            var userProfile = new UserProfile(
+                userId: user.Id,
+                email: user.Email
+            );
+
+            _authDb.UserProfiles.Add(userProfile);
+            await _authDb.SaveChangesAsync(cancellationToken);
 
             //Publish Event: Notify other services about new user registration
 
@@ -41,7 +49,7 @@ namespace WORKMAN.Auth.Feature.Auth.Register
             {
                 UserId = user.Id,
                 Email = user.Email,
-                RegisteredAt = user.CreatedAtUtc
+                RegisteredAt = user.CreatedAt
             };
 
             await _eventPublisher.PublishAsync(userRegisteredEvent, cancellationToken);

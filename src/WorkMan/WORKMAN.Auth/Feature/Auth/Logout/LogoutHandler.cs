@@ -33,7 +33,7 @@
                 return new LogoutResponse { Success = true };
             }
 
-            token.Revoke();
+            token.Revoke((int)token.UserId); // Track who revoked the token
             await _authDb.SaveChangesAsync(cancellationToken);
 
             _logger.LogInformation("User logged out successfully. UserId: {UserId}", token.UserId);
