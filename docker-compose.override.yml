@@ -1,0 +1,23 @@
+services:
+
+  workman.auth:
+    container_name: workman-auth
+    build:
+      context: .
+      dockerfile: src/WorkMan/WORKMAN.Auth/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__AuthDatabase: Host=authdb;Port=5432;Database=AuthDb;Username=postgres;Password=postgres
+      RabbitMQ__Host: rabbitmq
+      RabbitMQ__Port: 5672
+      RabbitMQ__Username: guest
+      RabbitMQ__Password: guest
+    ports:
+      - "5001:8080"
+    depends_on:
+      authdb:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - workman-network

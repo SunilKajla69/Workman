@@ -132,7 +132,6 @@ __azurite_db*__.json
 *.tfvars
 
 # Docker
-docker-compose.override.yml
 .dockerignore
 
 # Publish profiles
