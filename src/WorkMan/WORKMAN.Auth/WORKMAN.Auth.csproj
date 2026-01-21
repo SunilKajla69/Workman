@@ -28,4 +28,11 @@
     <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.ExceptionHandling\BuildingBlocks.ExceptionHandling.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Feature\Permissions\" />
+    <Folder Include="Feature\Roles\GetRoles\" />
+    <Folder Include="Feature\Roles\AssignRoleToUser\" />
+    <Folder Include="Feature\Roles\UpdateRolePermissions\" />
+  </ItemGroup>
+
 </Project>
