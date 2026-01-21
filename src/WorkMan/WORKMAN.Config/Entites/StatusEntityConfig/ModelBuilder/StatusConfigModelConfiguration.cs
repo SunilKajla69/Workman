@@ -1,7 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WORKMAN.Config.Entites.MenuEntityConfig;
-
 namespace WORKMAN.Config.Entites.StatusEntityConfig.ModelBuilder
 {
     public class StatusConfigModelConfiguration : IEntityTypeConfiguration<StatusConfig>

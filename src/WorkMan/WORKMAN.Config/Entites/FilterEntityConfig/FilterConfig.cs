@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Common.Base;
-
-namespace WORKMAN.Config.Entites.FilterConfig
+﻿namespace WORKMAN.Config.Entites.FilterConfig
 {
     public class FilterConfig : BaseEntity
     {

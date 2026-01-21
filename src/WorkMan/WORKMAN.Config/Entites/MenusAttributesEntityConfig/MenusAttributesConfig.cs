@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Common.Base;
-
-namespace WORKMAN.Config.Entites.MenusAttributesEntityConfig
+﻿namespace WORKMAN.Config.Entites.MenusAttributesEntityConfig
 {
     public class MenusAttributesConfig : BaseEntity
     {

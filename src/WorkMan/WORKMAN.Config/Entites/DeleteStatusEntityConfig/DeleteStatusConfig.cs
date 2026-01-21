@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Common.Base;
-
-namespace WORKMAN.Config.Entites.DeleteStatusConfig
+﻿namespace WORKMAN.Config.Entites.DeleteStatusConfig
 {
     public class DeleteStatusConfig: BaseEntity
     {

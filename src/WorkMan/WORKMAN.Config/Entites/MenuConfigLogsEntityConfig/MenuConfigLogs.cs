@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Common.Base;
-
-namespace WORKMAN.Config.Entites.MenuConfigLogsEntityConfig
+﻿namespace WORKMAN.Config.Entites.MenuConfigLogsEntityConfig
 {
     public class MenuConfigLogs
     {

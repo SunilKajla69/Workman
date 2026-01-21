@@ -1,5 +1,3 @@
-using BuildingBlocks.Common.ViewModels.BaseViewModels;
-
 namespace WORKMAN.Config.ViewModels.MenuConfigViewModels
 {
     public class MenuConfigVM : BaseVM

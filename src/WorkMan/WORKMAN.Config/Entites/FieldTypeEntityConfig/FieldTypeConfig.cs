@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Common.Base;
-
-namespace WORKMAN.Config.Entites.FeildTypeEntityConfig
+﻿namespace WORKMAN.Config.Entites.FeildTypeEntityConfig
 {
     public class FieldTypeConfig : BaseEntity
     {

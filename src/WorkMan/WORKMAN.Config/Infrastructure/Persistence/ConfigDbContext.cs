@@ -1,16 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WORKMAN.Config.Entites.AdvanceFilterConfig;
-using WORKMAN.Config.Entites.AttributeGroupConfig;
-using WORKMAN.Config.Entites.BussinesRuleAttributesEntityConfig;
-using WORKMAN.Config.Entites.BussinesRuleConfig;
-using WORKMAN.Config.Entites.DeleteStatusConfig;
-using WORKMAN.Config.Entites.FeildTypeEntityConfig;
-using WORKMAN.Config.Entites.FilterConfig;
-using WORKMAN.Config.Entites.MenuConfigLogsEntityConfig;
-using WORKMAN.Config.Entites.MenuEntityConfig;
-using WORKMAN.Config.Entites.MenusAttributesEntityConfig;
-
-using WORKMAN.Config.Entites.StatusEntityConfig;
+﻿using WORKMAN.Config.Entites.StatusEntityConfig;
 using WORKMAN.Config.Entites.UserColumnView;
 
 namespace WORKMAN.Config.Infrastructure.Persistence

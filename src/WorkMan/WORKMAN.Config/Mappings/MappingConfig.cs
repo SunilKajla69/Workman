@@ -1,27 +1,3 @@
-using Mapster;
-using WORKMAN.Config.Entites.AdvanceFilterConfig;
-using WORKMAN.Config.Entites.AttributeGroupConfig;
-using WORKMAN.Config.Entites.BussinesRuleAttributesEntityConfig;
-using WORKMAN.Config.Entites.BussinesRuleConfig;
-using WORKMAN.Config.Entites.DeleteStatusConfig;
-using WORKMAN.Config.Entites.FilterConfig;
-using WORKMAN.Config.Entites.MenuConfigLogsEntityConfig;
-using WORKMAN.Config.Entites.MenuEntityConfig;
-using WORKMAN.Config.Entites.MenusAttributesEntityConfig;
-using WORKMAN.Config.Entites.StatusEntityConfig;
-using WORKMAN.Config.Entites.UserColumnView;
-using WORKMAN.Config.ViewModels.AdvanceFiltersViewModels;
-using WORKMAN.Config.ViewModels.AttributeGroupViewModels;
-using WORKMAN.Config.ViewModels.BussinesRuleAttributesViewModels;
-using WORKMAN.Config.ViewModels.BussinesRuleConfigViewModels;
-using WORKMAN.Config.ViewModels.DeleteStatusConfigViewModels;
-using WORKMAN.Config.ViewModels.FilterConfigViewModels;
-using WORKMAN.Config.ViewModels.MenuConfigLogsViewModels;
-using WORKMAN.Config.ViewModels.MenuConfigViewModels;
-using WORKMAN.Config.ViewModels.MenusAttributesConfigViewModels;
-using WORKMAN.Config.ViewModels.StatusConfigViewModels;
-using WORKMAN.Config.ViewModels.UserColumnViewViewModels;
-
 namespace WORKMAN.Config.Mappings
 {
     public class MappingConfig : IRegister

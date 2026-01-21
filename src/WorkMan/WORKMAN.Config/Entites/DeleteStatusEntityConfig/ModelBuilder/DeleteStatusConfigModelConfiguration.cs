@@ -1,7 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WORKMAN.Config.Entites.DeleteStatusConfig;
-
 namespace WORKMAN.Config.Entites.DeleteStatusConfig.ModelBuilder
 {
     public class DeleteStatusConfigModelConfiguration : IEntityTypeConfiguration<DeleteStatusConfig>

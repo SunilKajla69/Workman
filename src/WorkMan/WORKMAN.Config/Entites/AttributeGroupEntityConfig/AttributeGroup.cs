@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Common.Base;
-
-namespace WORKMAN.Config.Entites.AttributeGroupConfig
+﻿namespace WORKMAN.Config.Entites.AttributeGroupConfig
 {
     public class AttributeGroup: BaseEntity
     {

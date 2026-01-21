@@ -1,5 +1,3 @@
-using BuildingBlocks.Common.ViewModels.BaseViewModels;
-
 namespace WORKMAN.Config.ViewModels.DeleteStatusConfigViewModels
 {
     public class DeleteStatusConfigVM : BaseVM

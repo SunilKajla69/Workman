@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 namespace WORKMAN.Config.Entites.FilterConfig.ModelBuilder
 {
     public class FilterConfigModelConfiguration : IEntityTypeConfiguration<FilterConfig>

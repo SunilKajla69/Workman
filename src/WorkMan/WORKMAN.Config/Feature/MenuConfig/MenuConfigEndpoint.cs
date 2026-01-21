@@ -1,10 +1,4 @@
-﻿using BuildingBlocks.Common.Contracts.Messages;
-using BuildingBlocks.Common.Contracts.Responses;
-using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata;
-
-namespace WORKMAN.Config.Feature.MenuConfig
+﻿namespace WORKMAN.Config.Feature.MenuConfig
 {
     [ApiController]
     [Route("api/menuconfig")]
