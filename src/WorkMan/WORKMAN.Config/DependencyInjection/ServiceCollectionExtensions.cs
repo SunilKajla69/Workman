@@ -1,5 +1,4 @@
-﻿using BuildingBlocks.Common.DependencyInjection;
-using FluentValidation;
+﻿using FluentValidation;
 using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.RateLimiting;
@@ -22,7 +21,7 @@ namespace WORKMAN.Config.DependencyInjection
 
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll", policy =>
+                options.AddPolicy("config-policy", policy =>
                 {
                     policy.AllowAnyOrigin()
                           .AllowAnyMethod()
@@ -32,7 +31,7 @@ namespace WORKMAN.Config.DependencyInjection
 
             services.AddDbContext<ConfigDbContext>(options =>
             {
-                var connectionString = configuration.GetConnectionString("ConfigDatabase");
+                var connectionString = configuration.GetConnectionString("configDatabase");
                 
                     options.UseNpgsql(connectionString);
                 
@@ -63,7 +62,7 @@ namespace WORKMAN.Config.DependencyInjection
 
             //Add Event Infrastructure
 
-            services.AddEventInfrastructure();
+            //services.AddEventInfrastructure();
             
             // Add Mapster
             services.AddMapster();

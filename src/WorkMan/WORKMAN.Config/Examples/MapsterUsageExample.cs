@@ -36,7 +36,7 @@ namespace WORKMAN.Config.Examples
         /// <summary>
         /// Example: Convert ViewModel to Entity for creating new record
         /// </summary>
-        public async Task<int> CreateMenuConfigAsync(MenuConfigVM viewModel)
+        public async Task<long> CreateMenuConfigAsync(MenuConfigVM viewModel)
         {
             // Map ViewModel to entity
             var menuConfig = _mapper.Map<MenuConfig>(viewModel);
