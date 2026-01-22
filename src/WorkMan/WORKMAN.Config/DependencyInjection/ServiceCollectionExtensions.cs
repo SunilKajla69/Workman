@@ -2,9 +2,15 @@
 using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.RateLimiting;
+
 using System.Reflection;
 using System.Threading.RateLimiting;
-using WORKMAN.Config.Feature.FieldTypeConfig;
+using WORKMAN.Config.Feature.MenuConfig;
+using WORKMAN.Config.Infrastructure.Persistence;
+using WORKMAN.Config.Infrastructure.Dapper;
+using WORKMAN.Config.Infrastructure.Dapper.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi;
 
 namespace WORKMAN.Config.DependencyInjection
 {
@@ -17,11 +23,19 @@ namespace WORKMAN.Config.DependencyInjection
             services.AddControllers();
 
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "WORKMAN Config API",
+                    Version = "v1",
+                    Description = "API for WORKMAN Configuration Management"
+                });
+            });
 
             services.AddCors(options =>
             {
-                options.AddPolicy("config-policy", policy =>
+                options.AddPolicy("AllowAll", policy =>
                 {
                     policy.AllowAnyOrigin()
                           .AllowAnyMethod()
@@ -32,13 +46,16 @@ namespace WORKMAN.Config.DependencyInjection
             services.AddDbContext<ConfigDbContext>(options =>
             {
                 var connectionString = configuration.GetConnectionString("configDatabase");
-                
                     options.UseNpgsql(connectionString);
-                
             });
 
+            // Register Dapper Infrastructure
+            services.AddScoped<IDapperContext, DapperContext>();
+            services.AddScoped<IDapperRepository, DapperRepository>();
+
             // Feature handlers
-            services.AddScoped<FieldTypeHandler>();
+            //services.AddScoped<FieldTypeHandler>();
+            services.AddScoped<MenuConfigHandler>();
 
             services.AddAuthorization();
 
@@ -55,18 +72,9 @@ namespace WORKMAN.Config.DependencyInjection
                     opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
                     opt.QueueLimit = 0;
                 });
-
-                // Custom response when limited
                 options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
             });
-
-            //Add Event Infrastructure
-
-            //services.AddEventInfrastructure();
-            
-            // Add Mapster
             services.AddMapster();
-
             return services;
         }
 

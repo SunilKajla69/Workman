@@ -15,6 +15,7 @@
         [ProducesResponseType(typeof(ApiResponse<LoginResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status401Unauthorized)]
         [EnableRateLimiting("login-policy")]
+        [AllowAnonymous]
         public async Task<ActionResult<ApiResponse<LoginResponse>>> LoginAsync(
             [FromBody] LoginRequest request,
             CancellationToken cancellationToken)

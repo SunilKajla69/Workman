@@ -17,7 +17,7 @@ namespace WORKMAN.Config.Entites.MenuEntityConfig
         public string MenuDiscription { get; set; } = string.Empty;
         public int StatusId{ get; set; }
         public int DisplayOrder{ get; set; }
-     
-        
+        public bool IsCreatedBySystem { get; set; }
+
     }
 }

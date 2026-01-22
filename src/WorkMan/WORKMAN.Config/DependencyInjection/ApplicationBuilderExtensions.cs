@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
+using WORKMAN.Config.Infrastructure.Persistence;
+using WORKMAN.Config.DataSeed;
 
 namespace WORKMAN.Config.DependencyInjection
 {
@@ -6,7 +9,7 @@ namespace WORKMAN.Config.DependencyInjection
     {
         public static WebApplication UseConfigApi(this WebApplication app)
         {
-            // Apply migrations with retry logic
+            // Apply migrations and seed data
             using (var scope = app.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider
@@ -22,15 +25,14 @@ namespace WORKMAN.Config.DependencyInjection
                         logger.LogInformation("Attempting to migrate database (attempt {Retry} of {MaxRetries})...", retry, maxRetries);
                         dbContext.Database.Migrate();
                         logger.LogInformation("Database migration completed successfully.");
+                        DataSeeder.SeedData(dbContext, logger);
                         break;
                     }
                     catch (Exception ex) when (retry < maxRetries)
                     {
-                        var delay = TimeSpan.FromSeconds(Math.Pow(2, retry));
                         logger.LogWarning(ex,
                             "Failed to connect to database (attempt {Retry} of {MaxRetries}). Retrying in {Delay} seconds...",
-                            retry, maxRetries, delay.TotalSeconds);
-                        Thread.Sleep(delay);
+                            retry, maxRetries, 1);
                     }
                     catch (Exception ex)
                     {
@@ -43,8 +45,9 @@ namespace WORKMAN.Config.DependencyInjection
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "WORKMAN Config API V1");
-                c.RoutePrefix = string.Empty;
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "WORKMAN Config API v1");
+                c.RoutePrefix = string.Empty; // Swagger UI at root
+                c.DocumentTitle = "WORKMAN Config API Documentation";
             });
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -54,7 +57,7 @@ namespace WORKMAN.Config.DependencyInjection
 
             //app.UseGlobalExceptionHandling();
 
-            app.UseCors("config-policy");
+            app.UseCors("AllowAll");
 
             app.UseRouting();
 
