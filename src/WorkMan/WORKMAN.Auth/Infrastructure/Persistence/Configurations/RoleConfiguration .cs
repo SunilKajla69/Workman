@@ -1,5 +1,4 @@
-﻿
-namespace WORKMAN.Auth.Infrastructure.Persistence.Configurations
+﻿namespace WORKMAN.Auth.Infrastructure.Persistence.Configurations
 {
     public class RoleConfiguration : IEntityTypeConfiguration<Role>
     {
@@ -15,16 +14,6 @@ namespace WORKMAN.Auth.Infrastructure.Persistence.Configurations
 
             builder.HasIndex(x => x.Name)
                 .IsUnique();
-
-            builder.HasKey(x => new { x.Id, x.Id });
-
-            builder.HasOne(x => x.User)
-                .WithMany(x => x.UserRoles)
-                .HasForeignKey(x => x.UserId);
-
-            builder.HasOne(x => x.Role)
-                .WithMany(x => x.UserRoles)
-                .HasForeignKey(x => x.RoleId);
         }
     }
 }

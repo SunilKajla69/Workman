@@ -14,16 +14,6 @@
 
             builder.HasIndex(x => x.Code)
                 .IsUnique();
-
-            builder.HasKey(x => new { x.Id, x.Id });
-
-            builder.HasOne(x => x.Role)
-                .WithMany(x => x.RolePermissions)
-                .HasForeignKey(x => x.RoleId);
-
-            builder.HasOne(x => x.Permission)
-                .WithMany()
-                .HasForeignKey(x => x.PermissionId);
         }
     }
 }

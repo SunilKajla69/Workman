@@ -3,8 +3,9 @@
     public sealed class Role : BaseEntity
     {
         public string Name { get; private set; } = default!;
-        private readonly List<UserRole> _users = new();
+        private readonly List<UserRole> _userRoles = new();
         public IReadOnlyCollection<UserRole> UserRoles => _userRoles;
+
         private readonly List<RolePermission> _rolePermissions = new();
         public IReadOnlyCollection<RolePermission> RolePermissions => _rolePermissions;
         private Role() { }
