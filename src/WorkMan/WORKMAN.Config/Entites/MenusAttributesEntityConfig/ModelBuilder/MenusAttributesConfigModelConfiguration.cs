@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 namespace WORKMAN.Config.Entites.MenusAttributesEntityConfig.ModelBuilder
 {
     public class MenusAttributesConfigModelConfiguration : IEntityTypeConfiguration<MenusAttributesConfig>

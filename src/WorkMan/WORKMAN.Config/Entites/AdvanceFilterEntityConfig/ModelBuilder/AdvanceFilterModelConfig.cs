@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace WORKMAN.Config.Entites.AdvanceFilterConfig.ModelBuilder
+﻿namespace WORKMAN.Config.Entites.AdvanceFilterConfig.ModelBuilder
 {
     public class AdvanceFilterModelConfig : IEntityTypeConfiguration<AdvanceFilters>
     {

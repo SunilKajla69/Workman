@@ -1,7 +1,4 @@
-﻿using WORKMAN.Config.Infrastructure.Persistence;
-using WORKMAN.Config.ViewModels.FieldTypeViewModels;
-
-namespace WORKMAN.Config.Feature.FieldTypeConfig
+﻿namespace WORKMAN.Config.Feature.FieldTypeConfig
 {
     public class FieldTypeHandler
     {

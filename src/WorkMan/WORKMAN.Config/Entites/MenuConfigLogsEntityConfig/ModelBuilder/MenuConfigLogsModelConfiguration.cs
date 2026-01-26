@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 namespace WORKMAN.Config.Entites.MenuConfigLogsEntityConfig.ModelBuilder
 {
     public class MenuConfigLogsModelConfiguration : IEntityTypeConfiguration<MenuConfigLogs>

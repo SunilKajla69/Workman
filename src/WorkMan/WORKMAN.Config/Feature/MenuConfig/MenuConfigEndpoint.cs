@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.Common.Contracts.Messages;
+using BuildingBlocks.Common.Contracts.Messages;
 using BuildingBlocks.Common.Contracts.Responses;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;

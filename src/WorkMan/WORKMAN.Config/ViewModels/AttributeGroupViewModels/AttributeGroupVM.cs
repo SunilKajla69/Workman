@@ -1,5 +1,3 @@
-using BuildingBlocks.Common.ViewModels.BaseViewModels;
-
 namespace WORKMAN.Config.ViewModels.AttributeGroupViewModels
 {
     public class AttributeGroupVM : BaseVM

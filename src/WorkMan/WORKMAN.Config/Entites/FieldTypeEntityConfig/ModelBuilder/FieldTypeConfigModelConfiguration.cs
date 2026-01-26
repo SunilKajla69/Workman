@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace WORKMAN.Config.Entites.FeildTypeEntityConfig.ModelBuilder
+﻿namespace WORKMAN.Config.Entites.FeildTypeEntityConfig.ModelBuilder
 {
     public class FieldTypeConfigModelConfiguration : IEntityTypeConfiguration<FieldTypeConfig>
     {

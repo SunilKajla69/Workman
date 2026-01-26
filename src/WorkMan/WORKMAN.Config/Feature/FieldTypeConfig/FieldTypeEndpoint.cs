@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WORKMAN.Config.ViewModels.FieldTypeViewModels;
-
-namespace WORKMAN.Config.Feature.FieldTypeConfig
+﻿namespace WORKMAN.Config.Feature.FieldTypeConfig
 {
     [ApiController]
     [Route("api/config")]

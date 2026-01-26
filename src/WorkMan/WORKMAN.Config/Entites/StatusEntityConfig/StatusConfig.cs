@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Common.Base;
-
-namespace WORKMAN.Config.Entites.StatusEntityConfig
+﻿namespace WORKMAN.Config.Entites.StatusEntityConfig
 {
     public class StatusConfig: BaseEntity
     {

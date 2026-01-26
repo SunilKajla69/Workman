@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Common.Base;
-
-namespace WORKMAN.Auth.Entities
+﻿namespace WORKMAN.Auth.Entities
 {
     public sealed class User : BaseEntity
     {
@@ -15,18 +13,28 @@ namespace WORKMAN.Auth.Entities
             PasswordHash = passwordHash;
         }
 
-    public void UpdatePassword(string newPasswordHash, int updatedBy)
-    {
-        PasswordHash = newPasswordHash;
-        UpdatedBy = updatedBy;
-        UpdatedAt = DateTime.UtcNow;
-    }
+        public void UpdatePassword(string newPasswordHash, int updatedBy)
+        {
+            PasswordHash = newPasswordHash;
+            UpdatedBy = updatedBy;
+            UpdatedAt = DateTime.UtcNow;
+        }
 
-    public void MarkAsDeleted(int deletedBy)
-    {
-        UpdatedBy = deletedBy;
-        UpdatedAt = DateTime.UtcNow;
-        IsDeleted = 1;
-    }
+        public void MarkAsDeleted(int deletedBy)
+        {
+            UpdatedBy = deletedBy;
+            UpdatedAt = DateTime.UtcNow;
+            IsDeleted = 1;
+        }
+
+        private readonly List<UserRole> _userRoles = new();
+        public IReadOnlyCollection<UserRole> UserRoles => _userRoles;
+
+        public void AssignRole(Role role)
+        {
+            if (_userRoles.Any(ur => ur.RoleId == role.Id))
+                return;
+            _userRoles.Add(new UserRole(Id, role.Id));
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Common.Base;
-
-namespace WORKMAN.Config.Entites.AdvanceFilterConfig
+﻿namespace WORKMAN.Config.Entites.AdvanceFilterConfig
 {
     public class AdvanceFilters:BaseEntity
     {
